@@ -3,9 +3,9 @@ module Plutus
     extend ActiveSupport::Concern
 
     included do
-      validates :name, presence: true, uniqueness: { scope: :tenant_id }
+      validates :name, presence: true, uniqueness: { scope: [:tenant_type, :tenant_id] }
 
-      belongs_to :tenant, class_name: Plutus.tenant_class
+      belongs_to :tenant, polymorphic: true
     end
   end
 end

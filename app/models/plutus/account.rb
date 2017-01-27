@@ -29,7 +29,7 @@ module Plutus
   # @see http://en.wikipedia.org/wiki/Debits_and_credits Debits, Credits, and Contra Accounts
   #
   # @author Michael Bulat
-  class Account < ActiveRecord::Base
+  class Account < ApplicationRecord
     class_attribute :normal_credit_balance
 
     has_many :amounts

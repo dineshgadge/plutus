@@ -21,7 +21,7 @@ module Plutus
   # @see http://en.wikipedia.org/wiki/Journal_entry Journal Entry
   #
   # @author Michael Bulat
-  class Entry < ActiveRecord::Base
+  class Entry < ApplicationRecord
     before_save :default_date
     belongs_to :commercial_document, :polymorphic => true
     has_many :credit_amounts, :extend => AmountsExtension, :class_name => 'Plutus::CreditAmount', :inverse_of => :entry
@@ -52,7 +52,7 @@ module Plutus
 
     private
       def default_date
-        todays_date = ActiveRecord::Base.default_timezone == :utc ? Time.now.utc : Time.now
+        todays_date = ApplicationRecord.default_timezone == :utc ? Time.now.utc : Time.now
         self.date ||= todays_date
       end
 
